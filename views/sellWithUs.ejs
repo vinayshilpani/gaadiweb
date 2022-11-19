@@ -1,0 +1,188 @@
+<%- include('./partials/navbar') %>
+
+  <div class="container">
+    <div class="row py-5">
+      <div class="col-md-6 py-3">
+        <!-- <form action="/sellWithUs" me  thod="post"> -->
+        <div class="row">
+          <div class="col-12 pb-4">
+            <h4>Become a Gaadiweb Spare partners</h4>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInputName1" required name="name" />
+              <label for="floatingInputName1">Name</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="floatingInputPhone1" required name="phone" />
+              <label for="floatingInputPhone1">Phone</label>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInputEmail1" required name="email" />
+              <label for="floatingInputEmail1">Email</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input type="number" class="form-control mb-3" id="floatingInputPincode" required name="pincode" />
+              <label for="floatingInputPincode">Pincode</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="m-0"><input mbsc-input id="my-input" class=""
+                style="padding: 28px 10px; border-radius: 5px;" /></label>
+            <select id="mobi-select" name="formtype">
+              <option value="Select Type" selected>Select Type</option>
+              <option value="Vendor">Vendor</option>
+              <option value="Customer">Customer</option>
+            </select>
+          </div>
+          <div>
+            <button type="submit" onclick="submitSellForm()" class="blueBtn ms-0 mt-4">Send Message</button>
+          </div>
+        </div>
+        <!-- </form> -->
+      </div>
+      <div class="col-md-6 p-3 text-center">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14003.120383070745!2d77.2296837!3d28.6663024!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5edd58cd333ee799!2sGAADIWEB.COM!5e0!3m2!1sen!2sin!4v1667020835273!5m2!1sen!2sin"
+          width="100%" height="100%" style="border: 0; border-radius: 10px" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- partners -->
+  <div class="container-fluid pt-5">
+    <div class="row align-items-center text-center">
+      <div class="col-12 text-center">
+        <h2 class="fw-bold">FEW OF OUR CUSTOMERS</h2>
+        <p>
+          Our mission is to deliver compelling narratives, remarkable experiences, <br class="d-none d-md-block"> and outstanding results for our clients. Here’s a snapshot of some of the brands we are proud to work with.
+        </p>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner1.png" class="img-fluid w-75" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner3.png" class="img-fluid w-50" alt="" />
+        </div>
+      </div>
+
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner2.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner6.png" class="img-fluid w-50" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner5.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner4.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom Banner -->
+  <div class="container-fluid text-center" id="bottomBanner">
+    <div class="row py-5">
+      <div class="col-12 py-5">
+        <p class="">
+          <small>We Can Find The Process That Will <br class="d-block d-md-none"> Best Help You Meet Your
+            Goals.</small>
+        </p>
+        <h1>
+          We Have Dedication To Providing Outstanding <br />
+          Customer Service And Quality.
+        </h1>
+        <div>
+          <button class="blueBtn">
+            <a href="/purchaseWithUs" class="remove_a"> Give Requirement </a>
+          </button>
+          <button class="blueBtn">
+            <a href="/sellWithUs" class="remove_a"> Partner Now </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    $('#mobi-select').mobiscroll().select({
+      inputElement: document.getElementById('my-input'),
+      touchUi: false
+    });
+  </script>
+
+
+  <script>
+    function submitSellForm() {
+
+      let name = $('#floatingInputName1').val()
+      let phone = $('#floatingInputPhone1').val()
+      let email = $('#floatingInputEmail1').val()
+      let pincode = $('#floatingInputPincode').val()
+      let formtype = $('#mobi-select').val()
+
+      if (!name || !phone || !email || !pincode || !formtype) {
+        iziToast.warning({
+          title: 'warning',
+          message: 'Please Fill All the Field !',
+        });
+        return;
+      }
+
+      if (formtype == 'Select Type') {
+        iziToast.warning({
+          title: 'warning',
+          message: 'Please Select Type !',
+        });
+        return;
+      }
+
+
+
+      $.ajax({
+        url: '/sellWithUs',
+        method: "POST",
+        data: {
+          name: name,
+          phone: phone,
+          email: email,
+          pincode: pincode,
+          formtype: formtype,
+        },
+        success: (res) => {
+          iziToast.success({
+            title: 'OK',
+            message: 'Successfully Submitted !',
+          });
+          $('#floatingInputName1').val('')
+          $('#floatingInputPhone1').val('')
+          $('#floatingInputEmail1').val('')
+          $('#floatingInputPincode').val('')
+          $('#mobi-select').val('Select Type')
+          // $("#sellForm").load(location.href + " #sellForm");
+        }
+      })
+    } 
+  </script>
+
+  <%- include('./partials/footer') %>

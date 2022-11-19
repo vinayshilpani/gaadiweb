@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+
+
+    <script src="js/pagination.js"></script>
+    <link rel="stylesheet" href="css/pagination.css" />
+
+
+    <script>
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    
+    <title> GaadiWeb Admin </title>
+</head>
+
+<body>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include('./partials/sidebar') %>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Topbar Search -->
+                        <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                    aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Search for..." aria-label="Search"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello Admin</span>
+                                    <img class="img-profile rounded-circle" src="img/avatar.png">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <!-- <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a> -->
+                                    <a class="dropdown-item" href="/changepass">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/logout">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Manage Parts</h1>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Makes</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <%= totalmakes %>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa-solid fa-gears fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Total Models</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <%= model %>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa-solid fa-file-signature fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Type Of Parts
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                            <%= part_type %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pending Requests Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Total Parts
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa-solid fa-car fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div>
+                                            <h5 style="font-weight: bold; color: black !important;"> Add a Part </h5>
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <select class="form-control" id="makeSelect"
+                                                            onchange="findModel()">
+                                                            <option value="" selected disabled> Make </option>
+                                                            <% make.forEach((value,index)=>{ %>
+                                                                <option value="<%=value%>">
+                                                                    <%=value%>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <select name="" class="form-control" id="modelSelect"
+                                                            onchange="findEngine()">
+                                                            <option value="" selected disabled> Model </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <select name="" class="form-control" id="engineSelect">
+                                                            <option value="" selected disabled> Engine Type
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <input type="text" class="form-control" id="carYearRange"
+                                                            placeholder="Year">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <input type="text" class="form-control" id="carPart"
+                                                            placeholder="Part Name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto text-center px-4" style="cursor: pointer;"
+                                                onclick="addCarPart()">
+                                                <button class="btn btn-primary">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Content Row -->
+
+
+
+                        <div class="row">
+                            <!-- Begin Page Content -->
+                            <div class="container-fluid px-2">
+
+                                <!-- DataTales Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Part's Form Data</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="largedataTable" width="100%"
+                                                cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Make</th>
+                                                        <th>Model</th>
+                                                        <th>Engine Type</th>
+                                                        <th>Year Range</th>
+                                                        <th>SKU Cagegory</th>
+                                                        <th> Action </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="largedataTableBody">
+                                                    <% carData.forEach((value,index)=>{ %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= value.make %>
+                                                            </td>
+                                                            <td>
+                                                                <%= value.model %>
+                                                            </td>
+                                                            <td>
+                                                                <%= value.fuel_engine %>
+                                                            </td>
+                                                            <td>
+                                                                <%= value.year_range %>
+                                                            </td>
+                                                            <td>
+                                                                <%= value.sku_category %>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <a data-model="<%=value.model%>"
+                                                                    data-engine="<%=value.fuel_engine%>"
+                                                                    data-sku="<%=value.sku_category%>"
+                                                                    onclick="deletePart(this)">
+                                                                    <i class="fa-solid fa-trash px-3"
+                                                                        style="cursor: pointer;"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+
+
+                                            <div style="display: flex; justify-content: end; align-items: center;">
+                                                <div class="d-none">
+                                                    <samp>
+                                                        <span>Current page:</span>
+                                                        <span id="page-number-5"></span>
+                                                    </samp>
+                                                    <input type="text" value="<%=pages%>" id="totalPages">
+                                                </div>
+                                                <div id="pagination-5"></div>
+                                            </div>
+
+                                            <!-- <nav aria-label="Page navigation example">
+                                                <ul class="pagination">
+                                                    <li class="page-item"><a class="page-link" href="#">Previous</a>
+                                                    </li>
+                                                    <% for (var a=1; a <=pages; a++) { %>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page=<%= a; %>">
+                                                                <%= a; %>
+                                                            </a>
+                                                        </li>
+                                                        <% } %>
+                                                            <li class="page-item"><a class="page-link" href="#">Next</a>
+                                                            </li>
+                                                </ul>
+                                            </nav> -->
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.container-fluid -->
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2021</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#content-wrapper">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+    <script>
+
+
+        function pageClick5(pageNumber) {
+            document.getElementById("page-number-5").innerText = pageNumber;
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var itemsCount = $('#totalPages').val();
+            var itemsOnPage = 10;
+
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            var pagination5 = new Pagination({
+                container: document.getElementById("pagination-5"),
+                pageClickUrl: function (num) { return "?page=" + num; },
+                pageClickCallback: pageClick5,
+                callPageClickCallbackOnInit: true,
+                // enhancedMode: true,
+                maxVisibleElements: 15
+            });
+            pagination5.make(itemsCount, itemsOnPage, getParameterByName("page"));
+        });
+
+    </script>
+
+
+    <script>
+        function findModel() {
+            let val = $('#makeSelect').val();
+            $('#modelSelect').html('');
+            $('#modelSelect').append(`<option value='' selected disabled>Model</option>`);
+            $('#engineSelect').append(`<option value='' selected disabled>Engine Type</option>`);
+            $('#carPart').val('');
+            $('#carYearRange').val('');
+
+
+            $.ajax({
+                url: '/findModel',
+                method: "POST",
+                data: {
+                    make: val,
+                },
+                success: (res) => {
+                    let model = res.data;
+                    model.forEach((value, index) => {
+                        $('#modelSelect').append(`<option value='${value}'>${value}</option>`)
+                    });
+                }
+            })
+        }
+
+
+        function findEngine() {
+            let val = $('#modelSelect').val();
+
+            $('#engineSelect').html('')
+            $('#engineSelect').append(`<option value='' selected disabled>Engine Type</option>`);
+            $('#carPart').val('');
+            $('#carYearRange').val('');
+
+            $.ajax({
+                url: '/findEngine',
+                method: "POST",
+                data: {
+                    model: val,
+                },
+                success: (res) => {
+                    let engine = res.data;
+                    engine.forEach((value, index) => {
+                        $('#engineSelect').append(`<option value='${value}'>${value}</option>`)
+                    });
+                }
+            })
+        }
+
+
+        function addCarPart() {
+
+            let make = $('#makeSelect').val();
+            let model = $('#modelSelect').val();
+            let variant = $('#engineSelect').val();
+            let part = $('#carPart').val();
+            let year = $('#carYearRange').val();
+
+            if (!make || !model || !variant || !part || !year) {
+                iziToast.warning({
+                    title: 'Error',
+                    message: 'Please Fill all The Field',
+                });
+                return
+            }
+
+            $.ajax({
+                url: '/addCarPart',
+                method: "POST",
+                data: {
+                    make: make,
+                    model: model,
+                    variant: variant,
+                    year: year,
+                    part: part
+                },
+                success: (res) => {
+
+                    iziToast.success({
+                        title: 'Part Added',
+                        message: 'Page Reload in 2 Sec !',
+                    });
+                    setTimeout(() => {
+                        location.reload()
+                    }, 2000)
+                }
+            })
+
+        }
+
+
+        function deletePart(e) {
+
+            let model = e.getAttribute('data-model');
+            let engine = e.getAttribute('data-engine');
+            let sku = e.getAttribute('data-sku');
+
+            $.ajax({
+                url: '/deleteParts',
+                method: "POST",
+                data: {
+                    model: model,
+                    fuel_engine: engine,
+                    sku_category: sku
+                },
+                success: (res) => {
+
+                    iziToast.success({
+                        title: 'Part Deleted',
+                        message: 'Page Reload in 2 Sec !',
+                    });
+                    setTimeout(() => {
+                        location.reload()
+                    }, 2000)
+                }
+            })
+
+
+        }
+
+
+    </script>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+
+    <!-- Page level plugins -->
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+</body>
+
+</html>

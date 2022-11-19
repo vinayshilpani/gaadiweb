@@ -1,0 +1,670 @@
+<%- include('./partials/navbar') %>
+
+  <!-- carousel -->
+
+  <div id="carouselExampleCaptions" class="carousel slide pb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/newSlide2.jpg" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-flex align-items-center" id="carouselcaption1">
+          <div class="col-6 text-start text-black" data-aos="zoom-in">
+            <!-- <h2 class="blueColor">Get up to 50% off Today Only!</h2>
+            <h1>Winter Sale <br class="d-md-block d-none" />For Auto Parts</h1> -->
+            <h2 class="blueColor">GAADIWEB</h2>
+            <h1>
+              YOUR'S AUTO PARTS PARTNER
+            </h1>
+            <h4>
+              Car Parts, Car Maintanance, And More.
+            </h4>
+            <!-- <button class="blueBtn"><a href="/purchaseWithUs" class="remove_a">Purchase From Us</a></button>
+          <button class="blueBtn"><a href="/sellWithUs" class="remove_a">Sell with Us</a></button> -->
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/newSlide1.jpg" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-flex align-items-center" id="carouselcaption1">
+          <div class="col-6 offset-6 text-end text-black" data-aos="zoom-in">
+            <h2 class="blueColor">Get up to 50% off Today Only!</h2>
+            <h1>Winter Sale <br class="d-md-block d-none" />For Auto Parts</h1>
+            <!-- <button class="blueBtn"><a href="/purchaseWithUs" class="remove_a">Purchase From Us</a></button>
+          <button class="blueBtn"><a href="/sellWithUs" class="remove_a">Sell with Us</a></button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev"
+      style="color: black !important">
+      <span class="carousel-control" aria-hidden="true">
+        <h4><i class="fa-solid fa-circle-chevron-left"></i></h4>
+      </span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next"
+      style="color: black">
+      <span class="carousel-control" aria-hidden="true">
+        <h4><i class="fa-solid fa-circle-chevron-right"></i></h4>
+      </span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    <div id="searchParts"></div>
+  </div>
+
+  <!-- search by vehicle -->
+  <div class="container" data-aos="fade-up">
+    <div class="row px-3 px-md-0 py-md-5 justify-content-center" id="searchbycar">
+      <div class="col-12 py-3 text-center">
+        <h2 class="fw-bold">Search By Vehicle</h2>
+        <p class="text-muted">
+          Filter your results by Vehicle to make sure you only see components that
+          fit.
+        </p>
+      </div>
+      <div class="col-md-3 py-md-3">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="carBrand"
+          onchange="getCarBrand()" name="brand">
+          <option selected disabled>Select Car Brand</option>
+          <% carData.forEach((value,index)=>{ %>
+            <option value="<%= value %>">
+              <%= value %>
+            </option>
+            <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3 py-md-3">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="carModelBox"
+          onchange="getModelEngine()" name="model" required>
+          <option selected disabled>Select Car Model</option>
+        </select>
+      </div>
+      <div class="col-md-3 py-md-3">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onchange="getModelYear()"
+          id="fuel_engine">
+          <option selected disabled>Select Fuel Engine</option>
+        </select>
+      </div>
+      <div class="col-md-3 py-md-3">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="carYearBox" name="year"
+          required>
+          <option selected disabled>Select Car Model Year</option>
+        </select>
+      </div>
+      <div class="col-12 py-3 text-center">
+        <div>
+          <button class="blueBtn my-0" onclick="submitForm()" style="padding: 12px 50px !important" type="button">
+            Search
+          </button>
+          <button type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="modelBtn">
+            show
+          </button>
+          <button type="submit" id="sbmtForm" class="d-none">submit</button>
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+  </div>
+
+  <!-- homeCards -->
+  <div class="container mb-5 bg-light">
+    <div class="row text-center py-5">
+      <div class="col-md-4" data-aos="zoom-in-down">
+        <h4><i class="fa-solid fa-medal"></i></h4>
+        <h5>VISION</h5>
+        <p class="px-5 text-muted">
+          To consistently offer reliable and affordable products & service while maintaining a high level of customer
+          satisfaction.
+        </p>
+      </div>
+      <div class="col-md-4 border-end border-start" data-aos="zoom-in-down">
+        <h4><i class="fa-solid fa-hands-praying"></i></h4>
+        <h5>ABOUT US</h5>
+        <p class="px-5 text-muted">
+          Established in 2019, GaadiWeb seeks to be the one-stop-shop of auto components and Accessories for B2C and B2B
+          clients.
+        </p>
+      </div>
+      <div class="col-md-4" data-aos="zoom-in-down">
+        <h4><i class="fa-solid fa-trophy"></i></h4>
+        <h5>MISSION</h5>
+        <p class="px-5 text-muted">
+          To be one of the top choices for auto components in India that can amalgamate a highly unorganized industry.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- why choose us  -->
+  <div class="container mb-2" style="overflow: hidden;">
+    <div class="row px-3 px-md-0 align-items-center">
+      <div class="col-12 mb-5 text-center" id="whyUs">
+        <h2 class="fw-bold">Why Should Choose Us</h2>
+        <p>
+          <!-- Be the first to receive exclusive promotions, updates and product
+          announcements. Subscribe to our mailing list now! -->
+          Working with us means providing your business with great savings.
+          Here are the key reasons why we are well placed to assist and support our customer.
+        </p>
+      </div>
+
+      <div class="col-md-4 whyUs">
+        <div class="row align-items-center mb-4 pt-3" data-aos="fade-down-right">
+          <div class="col-9">
+            <h6 class="fw-bold">One Stop fulfilment Solution</h6>
+            <p class="text-muted">
+              Order any auto spare parts based on Vehicle, part Number etc.
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <i class="fa-solid fa-people-arrows"></i>
+          </div>
+        </div>
+        <div class="row align-items-center pt-3" data-aos="fade-up-right">
+          <div class="col-9">
+            <h6 class="fw-bold">Competitive Pricing</h6>
+            <p class="text-muted">Offers competitive pricing & <br> discounts.</p>
+          </div>
+          <div class="col-3 text-center">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center py-3 py-md-0">
+        <img src="img/mainBlueCar.jpg" alt="" class="img-fluid" />
+      </div>
+      <div class="col-md-4 whyUs">
+        <div class="row align-items-center mb-4 pt-3" data-aos="fade-down-left">
+          <div class="col-9">
+            <h6 class="fw-bold">Quick & Easy</h6>
+            <p class="text-muted">
+              Team and technology to <br />
+              help you
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+        </div>
+        <div class="row align-items-center pt-3 mb-3 mb-md-3" data-aos="fade-up-left">
+          <div class="col-9">
+            <h6 class="fw-bold">PAN India</h6>
+            <p class="text-muted">
+              Present in multiple states for spare parts sourcing.
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <i class="fa-solid fa-earth-americas"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- counter Up -->
+
+  <section id="counter" class="sec-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="count">
+            <span class="fa fa-smile-o"></span>
+            <i class="fa-solid fa-warehouse"></i>
+            <p class="number"><span class="counter">500</span> +</p>
+            <h4>Garages</h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="count">
+            <span class="fa fa-smile-o"></span>
+            <i class="fa-solid fa-map-location-dot"></i>
+            <p class="number"><span class="counter">27</span></p>
+            <h4>Locations</h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="count">
+            <span class="fa fa-smile-o"></span>
+            <i class="fa-solid fa-truck-fast"></i>
+            <p class="number"><span class="counter">25,000</span> +</p>
+            <h4>Orders</h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="count">
+            <span class="fa fa-smile-o"></span>
+            <i class="fa-solid fa-heart"></i>
+            <p class="number"><span class="counter">1,00,000</span> +</p>
+            <h4>Parts Delivered</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- partners -->
+  <div class="container-fluid pt-5">
+    <div class="row align-items-center text-center">
+      <div class="col-12 text-center" id="ourPartner">
+        <h2 class="fw-bold">FEW OF OUR CUSTOMERS</h2>
+        <p class="px-3 py-3 py-md-0">
+          Our mission is to deliver compelling narratives, remarkable experiences, <br class="d-none d-md-block"> and outstanding results for our clients. Here’s a snapshot of some of the brands we are proud to work with.
+        </p>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner1.png" class="img-fluid w-75" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner3.png" class="img-fluid w-50" alt="" />
+        </div>
+      </div>
+
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner2.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner6.png" class="img-fluid w-50" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner5.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div>
+          <img src="img/partner4.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- bottom Banner -->
+  <div class="container-fluid text-center" id="bottomBanner">
+    <div class="row py-5">
+      <div class="col-12 py-5">
+        <p class="">
+          <small>We Can Find The Process That Will <br class="d-block d-md-none"> Best Help You Meet Your
+            Goals.</small>
+        </p>
+        <h1>
+          We Have Dedication To Providing Outstanding <br />
+          Customer Service And Quality.
+        </h1>
+        <div>
+          <button class="blueBtn">
+            <a href="/purchaseWithUs" class="remove_a"> Give Requirement </a>
+          </button>
+          <button class="blueBtn">
+            <a href="/sellWithUs" class="remove_a"> Partner Now </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <!-- <form action="/getPartsFrom" method="post"> -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+            Make a Request for Your Parts
+          </h5>
+        </div>
+        <div class="modal-body">
+          <div class="row px-3">
+            <div class="col-md-4">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputBrand" value="Car Brand" readonly
+                  name="carBrand" />
+                <label for="floatingInputBrand">Make</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputModel" value="Car Model" readonly
+                  name="carModel" />
+                <label for="floatingInputModel">Model</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputModelYear" value="Car Model Year" readonly
+                  name="carYear" />
+                <label for="floatingInputModelYear">Year</label>
+              </div>
+            </div>
+          </div>
+          <div id="multiSelect">
+            <!-- <label for="select-state">Select Parts :</label> -->
+            <select id="select-state" name="state[]" multiple class="demo-default m-auto mb-2" style="width: 93%;"
+              placeholder="Select Parts...">
+              <option value="1" class="" disabled>Select Parts...</option>
+            </select>
+          </div>
+          <!-- <button onclick="submitMainForm()"> check </button> -->
+          <div class="row px-3">
+            <div class="col-6">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputName" name="name" required />
+                <label for="floatingInputName">Name</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating mb-2">
+                <input type="number" class="form-control" id="floatingInputNumber" name="mobile" required />
+                <label for="floatingInputNumber">Mobile</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating mb-2">
+                <input type="email" class="form-control" id="floatingInputEmail" name="email" required />
+                <label for="floatingInputEmail">Email</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputDesc" name="description" />
+                <label for="floatingInputDesc">Description</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" id="modalClose" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" onclick="submitMainForm()" class="btn btn-primary">
+            Get Req For Parts
+          </button>
+        </div>
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+
+  <script>
+    mobiscroll.setOptions({
+      theme: "ios",
+      themeVariant: "light",
+      // filter: true,
+    });
+
+    $(function () {
+      $("#demo-multiple-select")
+        .mobiscroll()
+        .select({
+          inputElement: document.getElementById("demo-multiple-select-input"),
+        });
+    });
+  </script>
+
+  <!-- <script>
+    function checkFun() {
+      location.reload();
+    }
+  </script> -->
+
+  <script>
+    function getCarBrand() {
+      let val = document.getElementById("carBrand").value;
+      $.ajax({
+        url: "/getCarModel",
+        method: "POST",
+        data: {
+          carBrand: val,
+        },
+        success: (res) => {
+          $("#carModelBox").html(
+            "<option selected disabled>Select Car Model</option>"
+          );
+          $("#fuel_engine").html(
+            "<option selected disabled>Select Fuel Engine</option>"
+          );
+          $("#carYearBox").html(
+            "<option selected disabled>Select Car Model Year</option>"
+          );
+          let modelData = res.modelData;
+
+          modelData.forEach((value, index) => {
+            $("#carModelBox").append(
+              `<option value='${value}'> ${value} </option>`
+            );
+          });
+
+
+
+
+        },
+      });
+    }
+
+    function getModelEngine() {
+      let value = document.getElementById("carModelBox").value;
+
+      $.ajax({
+        url: "/getCarEngine",
+        method: "POST",
+        data: {
+          model: value
+        },
+        success: (res) => {
+          let engine = res.engine;
+
+          $("#fuel_engine").html(
+            "<option selected disabled>Select Fuel Engine</option>"
+          );
+
+          engine.forEach((value, index) => {
+            $("#fuel_engine").append(
+              `<option value='${value}'>${value}</option>`
+            );
+          });
+
+        },
+      });
+
+    }
+
+    function getModelYear() {
+
+
+      let value = document.getElementById("carModelBox").value;
+      let engine = document.getElementById("fuel_engine").value;
+
+      $.ajax({
+        url: "/getCarYear",
+        method: "POST",
+        data: {
+          carModel: value,
+          engineType: engine
+        },
+        success: (res) => {
+          let startYear = parseInt(res.startYear)
+          let endYear = parseInt(res.endYear)
+          let yearData = [];
+
+          for (i = startYear; i <= endYear; i++) {
+            yearData.push(i)
+          }
+
+          let newYearData = yearData.reverse()
+
+          $("#carYearBox").html(
+            "<option selected disabled>Select Car Model Year</option>"
+          );
+
+          newYearData.forEach((value, index) => {
+            $("#carYearBox").append(
+              `<option value='${value}'>${value}</option>`
+            );
+          });
+
+        },
+      });
+
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+  <script>
+    function submitForm() {
+      let a = document.getElementById("carBrand").value;
+      let b = document.getElementById("carModelBox").value;
+      let d = document.getElementById("fuel_engine").value;
+      let c = document.getElementById("carYearBox").value;
+
+      if (a == "Select Car Brand") {
+        iziToast.warning({
+          title: 'Error',
+          message: 'Please Select Car Brand',
+        });
+        return
+      }
+
+      if (b == "Select Car Model") {
+        iziToast.warning({
+          title: 'Error',
+          message: 'Please Select Car Model',
+        });
+        return;
+      }
+
+      if (d == "Select Fuel Engine") {
+        iziToast.warning({
+          title: 'Error',
+          message: 'Please Select Fuel Engine',
+        });
+        return;
+      }
+
+      if (c == "Select Car Model Year") {
+        iziToast.warning({
+          title: 'Error',
+          message: 'Please Select Car Model Year',
+        });
+        return;
+      }
+
+      document.getElementById("floatingInputBrand").setAttribute("value", a);
+      document.getElementById("floatingInputModel").setAttribute("value", b);
+      document.getElementById("floatingInputModelYear").setAttribute("value", c);
+
+      let studentSelect = $('#mulipleSelectnew')
+
+      $.ajax({
+        url: '/getParts',
+        method: "POST",
+        data: {
+          model: b,
+          engineType: d
+        },
+        success: (res) => {
+          let parts = res.partsData;
+          parts.forEach((values, index) => {
+            $('#select-state').each(function () {
+              if (this.selectize) {
+                this.selectize.addOption({ value: values, text: values });
+              }
+            });
+          });
+        }
+      })
+
+      $("#modelBtn").click();
+    }
+  </script>
+
+
+  <script>
+
+
+    function submitMainForm() {
+
+      let make = $('#floatingInputBrand').val();
+      let model = $('#floatingInputModel').val();
+      let Year = $('#floatingInputModelYear').val();
+      let parts = $("#select-state").val();
+      let name = $('#floatingInputName').val();
+      let mobile = $('#floatingInputNumber').val();
+      let email = $('#floatingInputEmail').val();
+      let desc = $('#floatingInputDesc').val();
+
+      if (!make || !model || !Year || !parts || !name || !mobile || !email || !desc) {
+        iziToast.warning({
+          title: 'Error',
+          message: 'Please Fill All The Field',
+        });
+        return;
+      }
+
+      let newParts = parts.toString()
+      console.log(newParts);
+      console.log(typeof (newParts));
+      // let part = 
+
+      $.ajax({
+        url: '/getPartsFrom',
+        method: "POST",
+        data: {
+          carBrand: make,
+          carModel: model,
+          carYear: Year,
+          getparts: newParts,
+          name: name,
+          mobile: mobile,
+          email: email,
+          description: desc
+        },
+        success: (res) => {
+          iziToast.success({
+            title: 'OK',
+            message: 'Successfully Submitted !',
+          });
+          $('#modalClose').click();
+          $("#searchbycar").load(location.href + " #searchbycar");
+          $('#floatingInputBrand').val('');
+          $('#floatingInputModel').val('');
+          $('#floatingInputModelYear').val('');
+          $('#floatingInputName').val('');
+          $('#floatingInputNumber').val('');
+          $('#floatingInputEmail').val('');
+          $('#floatingInputDesc').val('');
+          
+          $('#select-state').val('1');
+        }
+      })
+
+
+    }
+  </script>
+
+  <script class="show">
+    $("#select-state").selectize({
+      maxItems: 100,
+    });
+  </script>
+
+  <script>
+    jQuery(document).ready(function ($) {
+      $(".counter").counterUp({
+        delay: 10,
+        time: 1000,
+      });
+    });
+  </script>
+
+  <%- include('./partials/footer') %>
